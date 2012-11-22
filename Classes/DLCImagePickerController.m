@@ -478,12 +478,11 @@
 	if (!isStatic && tgr.state == UIGestureRecognizerStateRecognized) {
 		CGPoint location = [tgr locationInView:self.imageView];
 		AVCaptureDevice *device = stillCamera.inputCamera;
-		CGPoint pointOfInterest = CGPointMake(.5f, .5f);
 		CGSize frameSize = [[self imageView] frame].size;
 		if ([stillCamera cameraPosition] == AVCaptureDevicePositionFront) {
             location.x = frameSize.width - location.x;
 		}
-		pointOfInterest = CGPointMake(location.y / frameSize.height, 1.f - (location.x / frameSize.width));
+		CGPoint pointOfInterest = CGPointMake(location.y / frameSize.height, 1.f - (location.x / frameSize.width));
 		if ([device isFocusPointOfInterestSupported] && [device isFocusModeSupported:AVCaptureFocusModeAutoFocus]) {
             NSError *error;
             if ([device lockForConfiguration:&error]) {
